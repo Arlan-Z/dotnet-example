@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "DfESh2uTN4Q=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Arlan\\Desktop\\Проекты\\dotnet Api Example\\dotnet Api Example.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Arlan\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.0-rc.1.24452.1\\microsoft.aspnetcore.openapi.9.0.0-rc.1.24452.1.nupkg.sha512",
+    "C:\\Users\\Arlan\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
