@@ -5,8 +5,8 @@ namespace Models
         public int Id { get; set;}
         public string Title { get; set;} = string.Empty;
         public string Content { get; set;} = string.Empty;
-        public DateTime CreatedOn {get; set;} = DateTime.Now; 
-
+        public DateTime CreatedOn {get; set;} = DateTime.Now;
+        
 
         // Using convention we link Stock-Comment models
         // Convention means that entity framework dot net core
