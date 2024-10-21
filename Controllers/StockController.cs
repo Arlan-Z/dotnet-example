@@ -1,4 +1,5 @@
 using Data;
+using Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers
@@ -16,7 +17,9 @@ namespace Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var stocks = _context.Stocks.ToList();
+            var stocks = _context.Stocks.ToList()
+            .Select(s => s.toStockDto());   
+
             return Ok(stocks); // returns code 200 and data
         }
 
@@ -28,7 +31,7 @@ namespace Controllers
             {
                 return NotFound(); // returns 404
             }
-            return Ok(stock);
+            return Ok(stock.toStockDto());
         }
     }
 }
