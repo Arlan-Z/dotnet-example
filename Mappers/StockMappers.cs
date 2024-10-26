@@ -16,7 +16,7 @@ namespace Mappers
                 LastDiv = stockModel.LastDiv,
                 industry = stockModel.industry,
                 MarketCap = stockModel.MarketCap,
-            };
+            };  
         }    
     }
 }
