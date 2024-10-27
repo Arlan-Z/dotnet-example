@@ -13,8 +13,8 @@ namespace Controllers
     public class StockController : ControllerBase
     {  
         private readonly ApplicationDBContext _context;
-        private readonly IstockRepository _stockRepo;
-        public StockController(ApplicationDBContext context, IstockRepository stockRepo)
+        private readonly IStockRepository _stockRepo;
+        public StockController(ApplicationDBContext context, IStockRepository stockRepo)
         {
             _stockRepo = stockRepo;
             _context = context; // our db context, session between database and our app
@@ -24,7 +24,7 @@ namespace Controllers
         public async Task<IActionResult> GetAll()
         {
             var stocks = await _stockRepo.GetAllAsync();
-            var stocDto = stocks.Select(s => s.toStockDto());   
+            var stockDto = stocks.Select(s => s.toStockDto());   
 
             return Ok(stocks); // returns code 200 and data
         }

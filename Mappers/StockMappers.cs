@@ -1,6 +1,6 @@
 using Dtos.Stock;
 using Models;
-
+// mappers are used to transform data between 2 or more different objects
 namespace Mappers
 {
     public static class StockMappers
@@ -16,6 +16,7 @@ namespace Mappers
                 LastDiv = stockModel.LastDiv,
                 industry = stockModel.industry,
                 MarketCap = stockModel.MarketCap,
+                Comments = stockModel.Comments.Select(c => c.toCommentDto()).ToList(),
             };  
         }
 
