@@ -1,5 +1,6 @@
 using Data;
 using Dtos.Stock;
+using Helpers;
 using Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -30,9 +31,31 @@ namespace Repository
             return stockModel;
         }
 
-        public async Task<List<Stock>> GetAllAsync()
+        public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
-            return await _context.Stocks.Include(c => c.Comments).ToListAsync();
+            var stocks =  _context.Stocks.Include(c => c.Comments).AsQueryable();
+            if(!string.IsNullOrWhiteSpace(query.CompanyName))
+            {
+                stocks = stocks.Where(c => c.CompanyName.Contains(query.CompanyName)); // we don`t need await because, it is building our query
+            }
+
+            if(!string.IsNullOrWhiteSpace(query.Symbol))
+            {
+                stocks = stocks.Where(c => c.Symbol.Contains(query.Symbol));
+            }
+
+            if(!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if(query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase)) // case insensitive, SyMbOL = Symbol
+                {
+                    stocks = query.isDescending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol);
+                }
+            }
+
+            var skipNumber = (query.PageNumber - 1) * query.PageSize;
+
+
+            return await stocks.Skip(skipNumber).Take(query.PageSize).ToListAsync(); // basically sends query to db and returns result as list
         }
 
         public async Task<Stock?> GetByIdAsync(int id)

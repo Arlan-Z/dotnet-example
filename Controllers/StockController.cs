@@ -1,10 +1,9 @@
 using Data;
 using Dtos.Stock;
+using Helpers;
 using Interfaces;
 using Mappers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Models;
 
 namespace Controllers
 {
@@ -21,10 +20,10 @@ namespace Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
-            var stocks = await _stockRepo.GetAllAsync();
+            var stocks = await _stockRepo.GetAllAsync(query);
             var stockDto = stocks.Select(s => s.toStockDto());   
 
             return Ok(stocks); // returns code 200 and data
