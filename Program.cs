@@ -1,5 +1,7 @@
 using Data;
+using Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddScoped<IstockRepository, StockRepository>(); // register StockRepository as IStockRepository interface realization
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
