@@ -33,7 +33,7 @@ namespace Repository
 
         public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
-            var stocks =  _context.Stocks.Include(c => c.Comments).AsQueryable();
+            var stocks =  _context.Stocks.Include(c => c.Comments).ThenInclude(a => a.appUser).AsQueryable();
             if(!string.IsNullOrWhiteSpace(query.CompanyName))
             {
                 stocks = stocks.Where(c => c.CompanyName.Contains(query.CompanyName)); // we don`t need await because, it is building our query

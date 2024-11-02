@@ -13,6 +13,7 @@ namespace Mappers
                 Title = commentModel.Title,
                 Content = commentModel.Content,
                 CreatedOn = commentModel.CreatedOn,
+                CreatedBy = commentModel.appUser.UserName,
                 StockId = commentModel.StockId, // foreign key
             };
         }

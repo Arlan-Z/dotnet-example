@@ -17,7 +17,7 @@ namespace Models
         public int? StockId { get; set; } // ? means can be null
         public Stock? Stock{ get; set; } // navigation property, allows us to be able to navigate within this relationship
                                         // so we can go like this Stock.id, Stock.Company and etc.
-        
-
+        public string AppUserId {get; set;}
+        public AppUser appUser {get; set;}
     }
 }
