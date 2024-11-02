@@ -3,6 +3,7 @@ using Dtos.Stock;
 using Helpers;
 using Interfaces;
 using Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers
@@ -20,6 +21,7 @@ namespace Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
